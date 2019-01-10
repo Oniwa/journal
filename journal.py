@@ -2,8 +2,15 @@ import os
 
 
 def load(name):
-    # todo: populate from file if it exists
-    return []
+    data = []
+    filename = get_full_pathname(name)
+
+    if os.path.exists(filename):
+        with open(filename) as fn:
+            for entry in fn.readlines():
+                data.append(entry.rstrip())
+
+    return data
 
 
 def save(name, journal_data):
